@@ -1,5 +1,8 @@
 # TicTacToe
 
+# Requirements
+This mod requires Utilla
+
 # Screenshots
 ![Preview](https://github.com/HuskyGT/TicTacToe/assets/103238785/36b60602-2e0b-47b5-88a8-32b80f098b31)
 
