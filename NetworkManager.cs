@@ -46,7 +46,7 @@ namespace TicTacToe
                     if (eventData.Length != 10) { Debug.Log($"Start Data has wrong data amount from: {sender.NickName}"); return; }
 
                     Debug.Log($"Received Start Data Event From {sender.NickName}");
-                    
+                    Board.canPlay = false;
                     for (int i = 0; i < eventData.Length - 1; i++)
                     {
                         if (i <= 2)
@@ -54,7 +54,6 @@ namespace TicTacToe
                             Board b = Board.Instance;
                             b.spaces[0, i] = (char)eventData[i];
                             var space = b.boardSpaces.First(space => space.x == 0 && space.y == (byte)eventData[i]);
-                            space.canPlace = false;
                             // Checks is char is used or not (X or O)
                             if ((char)eventData[i] != 'X' && (char)eventData[i] != 'O') { return; }
                             space.transform.GetChild((char)eventData[i] == 'X' ? 0 : 1).gameObject.SetActive(true);
@@ -64,7 +63,6 @@ namespace TicTacToe
                             Board b = Board.Instance;
                             b.spaces[1, i] = (char)eventData[i];
                             var space = b.boardSpaces.First(space => space.x == 1 && space.y == (byte)eventData[i]);
-                            space.canPlace = false;
                             // Checks is char is used or not (X or O)
                             if ((char)eventData[i] != 'X' && (char)eventData[i] != 'O') { return; }
                             space.transform.GetChild((char)eventData[i] == 'X' ? 0 : 1).gameObject.SetActive(true);
@@ -75,7 +73,6 @@ namespace TicTacToe
                             Board b = Board.Instance;
                             b.spaces[2, i] = (char)eventData[i];
                             var space = b.boardSpaces.First(space => space.x == 2 && space.y == (byte)eventData[i]);
-                            space.canPlace = false;
                             // Checks is char is used or not (X or O)
                             if ((char)eventData[i] != 'X' && (char)eventData[i] != 'O') { return; }
                             space.transform.GetChild((char)eventData[i] == 'X' ? 0 : 1).gameObject.SetActive(true);
