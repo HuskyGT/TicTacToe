@@ -39,7 +39,7 @@ namespace TicTacToe
                     Debug.Log($"Received Play Turn Event From {sender.NickName}");
 
                     Board.Instance.PlayTurn(sender, (byte)eventData[0], (byte)eventData[1]);
-                break;
+                    break;
                 // Added startDataCode this is to recieve data for new players
                 case startDataCode:
                     if (sender == null || recievedData) return;
@@ -88,7 +88,7 @@ namespace TicTacToe
                     }
                     Board.Instance.lastPlayedPlayer = player;
                     recievedData = true;
-                 break;
+                    break;
             }
         }
 
@@ -108,10 +108,12 @@ namespace TicTacToe
 
         public override void OnPlayerEnteredRoom(Player newPlayer)
         {
-           newPlayer.CustomProperties.TryGetValue("TicTacToe", out object value);
-           if (value == null || Board.Instance.players[0] == null || Board.Instance.players[1] != null || Board.Instance.players[0] != PhotonNetwork.LocalPlayer || Board.Instance.lastPlayedPlayer == null) return;
+            newPlayer.CustomProperties.TryGetValue("TicTacToe", out object value);
+            if (Board.Instance.players[0] == null || Board.Instance.players[1] != null || Board.Instance.players[0] != PhotonNetwork.LocalPlayer || Board.Instance.lastPlayedPlayer == null)
+                return;
 
-           handleNewBoardPlayer(newPlayer);
+            Debug.Log($"Sending board information to {newPlayer.NickName}");
+            handleNewBoardPlayer(newPlayer);
         }
 
         // Added this to handle a new joined player to Re-Sync them with the game

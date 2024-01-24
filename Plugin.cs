@@ -1,4 +1,6 @@
-﻿using BepInEx;
+﻿
+using BepInEx;
+using ExitGames.Client.Photon;
 using Photon.Pun;
 using System;
 using System.Reflection;
@@ -50,7 +52,9 @@ namespace TicTacToe
             InModdedRoom = true;
             Board.Instance.gameObject.SetActive(true);
             // Makes the player have a Custom Property that tells us that hes using TicTacToe mod
-            PhotonNetwork.LocalPlayer.CustomProperties.Add("TicTacToe", true);
+            var table = new Hashtable();
+            table.Add("TicTacToe", true);
+            PhotonNetwork.LocalPlayer.SetCustomProperties(table);
         }
 
         [ModdedGamemodeLeave]
