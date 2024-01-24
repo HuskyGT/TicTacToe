@@ -108,11 +108,10 @@ namespace TicTacToe
 
         public override void OnPlayerEnteredRoom(Player newPlayer)
         {
-            newPlayer.CustomProperties.TryGetValue("TicTacToe", out object value);
-            if (Board.Instance.players[0] == null || Board.Instance.players[1] != null || Board.Instance.players[0] != PhotonNetwork.LocalPlayer || Board.Instance.lastPlayedPlayer == null)
+            if (!newPlayer.CustomProperties.ContainsKey("TicTacToe") || Board.Instance.players[0] == null || Board.Instance.players[0] != PhotonNetwork.LocalPlayer || Board.Instance.lastPlayedPlayer == null)
                 return;
 
-            Debug.Log($"Sending board information to {newPlayer.NickName}");
+            Debug.Log($"Sending board information");
             handleNewBoardPlayer(newPlayer);
         }
 
