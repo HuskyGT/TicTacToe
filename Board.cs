@@ -51,7 +51,7 @@ namespace TicTacToe
             gameStarted = false;
             lastPlayedPlayer = null;
             players[0] = null;
-            players[1] = null;
+            players[1] = null; 
         }
 
         public void PlayTurn(Player player, byte x, byte y)

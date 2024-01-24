@@ -19,6 +19,9 @@ namespace TicTacToe
             if (Board.Instance.lastPlayedPlayer == PhotonNetwork.LocalPlayer)
                 return;
 
+            if (Board.Instance.players[0] != null && Board.Instance.players[1] != null && Board.Instance.players[0] != PhotonNetwork.LocalPlayer && Board.Instance.players[1] != PhotonNetwork.LocalPlayer)
+                return;
+
             var component = collider.GetComponent<GorillaTriggerColliderHandIndicator>();
             if (component == null)
                 return;
