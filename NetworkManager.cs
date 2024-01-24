@@ -11,8 +11,8 @@ namespace TicTacToe
     internal class NetworkManager : MonoBehaviourPunCallbacks
     {
         internal static NetworkManager instance;
-        const byte turnCode = 42;
-        const byte startDataCode = 43;
+        const byte turnCode = 87;
+        const byte startDataCode = 88;
         bool recievedData = false;
 
         void Awake()
@@ -23,13 +23,12 @@ namespace TicTacToe
 
         void OnEvent(EventData data)
         {
-            // Moved the sender var up cause no need for it to be in turnCode case
-            var sender = PhotonNetwork.CurrentRoom.GetPlayer(data.Sender);
-            // Moved the eventData var up cause no need for it to be in turnCode case
-            var eventData = (object[])data.CustomData;
+            //no errors before errors now so this is here now
+            if (data.Code != turnCode && data.Code != startDataCode)
+                return;
 
-            // Added this so that it doesn't error out if for some reason the 43 Data Code is used from another event
-  
+            var sender = PhotonNetwork.CurrentRoom.GetPlayer(data.Sender);
+            var eventData = (object[])data.CustomData;
 
             switch (data.Code)
             {
