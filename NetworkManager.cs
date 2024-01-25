@@ -11,8 +11,8 @@ namespace TicTacToe
     internal class NetworkManager : MonoBehaviourPunCallbacks
     {
         internal static NetworkManager instance;
-        const byte turnCode = 87;
-        const byte startDataCode = 88;
+        const byte turnCode = 42;
+        const byte startDataCode = 43;
         bool recievedData = false;
 
         void Awake()
