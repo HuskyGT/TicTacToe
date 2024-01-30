@@ -1,4 +1,8 @@
 # TicTacToe
+
+# Discord 
+https://discord.com/invite/zVpbtgmehp
+
 Its tictactoe in Gorilla Tag that you can play with your friends 
 
 ## Requirements
