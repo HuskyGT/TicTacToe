@@ -21,12 +21,6 @@ namespace TicTacToe
         void Awake()
         {
             Utilla.Events.GameInitialized += OnGameInitialized;
-            /*byte[] decodedBytes = Convert.FromBase64String(encodedText);
-            string decodedText = System.Text.Encoding.UTF8.GetString(decodedBytes);*/
-
-            byte[] encodedBytes = System.Text.Encoding.UTF8.GetBytes("480BF235B17212F");
-            string encodedText = Convert.ToBase64String(encodedBytes);
-            print(encodedText);
         }
 
         void OnEnable()
