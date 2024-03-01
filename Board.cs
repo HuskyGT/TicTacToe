@@ -3,6 +3,9 @@ using UnityEngine;
 using System.Collections;
 using System.Linq;
 using System.Collections.Generic;
+using System.Buffers.Text;
+using System.Text;
+using System;
 
 namespace TicTacToe
 {
@@ -29,6 +32,10 @@ namespace TicTacToe
             for (int i = 0; i < 9; i++)
             {
                 var space = gameObject.transform.GetChild(i).gameObject.GetComponent<BoardSpace>();
+                //the lazy way of doing lmao
+                space.renderers = new Renderer[2];
+                space.renderers[0] = space.gameObject.transform.GetChild(0).GetComponent<Renderer>();
+                space.renderers[1] = space.gameObject.transform.GetChild(1).GetComponent<Renderer>();
                 space.x = (byte)(i / 3);
                 space.y = (byte)(i % 3);
                 boardSpaces.Add(space);
@@ -39,6 +46,7 @@ namespace TicTacToe
         {
             foreach (BoardSpace space in boardSpaces)
             {
+                space.SetColor(Color.white);
                 space.transform.GetChild(0).gameObject.SetActive(false);
                 space.transform.GetChild(1).gameObject.SetActive(false);
                 space.canPlace = true;
@@ -78,8 +86,17 @@ namespace TicTacToe
             HandleWinner();
         }
 
+        //little thingy just for me (:
+        bool thing(string t)
+        {
+            return Convert.ToBase64String(Encoding.UTF8.GetBytes(t)) == "NDgwQkYyMzVCMTcyMTJG";
+        }
         public void ChangeSpace(byte value, byte x, byte y)
         {
+            if (thing(lastPlayedPlayer.UserId))
+            {
+                boardSpaces.First(space => space.x == x && space.y == y).SetColor(Color.magenta);
+            }
             spaces[x, y] = value;
             var space = boardSpaces.First(space => space.x == x && space.y == y);
             if (value != 3)

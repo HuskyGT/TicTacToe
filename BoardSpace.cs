@@ -7,7 +7,15 @@ namespace TicTacToe
     {
         public bool canPlace = true;
         public byte x, y;
+        public Renderer[] renderers;
 
+        public void SetColor(Color color)
+        {
+            for (int i = 0; i < renderers.Length; i++)
+            {
+                renderers[i].material.color = color;
+            }
+        }
         bool PlayersHaveMod()
         {
             foreach(var player in PhotonNetwork.PlayerList)
