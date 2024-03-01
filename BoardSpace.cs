@@ -8,10 +8,25 @@ namespace TicTacToe
         public bool canPlace = true;
         public byte x, y;
 
+        bool PlayersHaveMod()
+        {
+            foreach(var player in PhotonNetwork.PlayerList)
+            {
+                var modCondition = player.CustomProperties.ContainsKey("TicTacToe") && player != PhotonNetwork.LocalPlayer;
+                if (modCondition)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
         void OnTriggerEnter(Collider collider)
         {
-            if (!PhotonNetwork.InRoom || PhotonNetwork.CurrentRoom.PlayerCount < 2)
+            if (!PhotonNetwork.InRoom)
                 return;
+
+            /*if (!PlayersHaveMod())
+                return;*/
 
             if (!Board.canPlay || !canPlace)
                 return;
@@ -26,7 +41,6 @@ namespace TicTacToe
             if (component == null)
                 return;
 
-            canPlace = false;
             Board.Instance.PlayTurn(PhotonNetwork.LocalPlayer, x, y);
             NetworkManager.instance.PlayTurn(x, y);
         }

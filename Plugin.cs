@@ -26,7 +26,7 @@ namespace TicTacToe
         {
             if (!InModdedRoom)
                 return;
-
+       
             Board.Instance.gameObject.SetActive(true);
         }
 
@@ -43,18 +43,14 @@ namespace TicTacToe
             board.gameObject.AddComponent<Board>();
             board.AddComponent<NetworkManager>();
             board.SetActive(false);
+            bundle.Unload(false);
         }
-
 
         [ModdedGamemodeJoin]
         public void OnJoin(string gamemode)
         {
             InModdedRoom = true;
             Board.Instance.gameObject.SetActive(true);
-            // Makes the player have a Custom Property that tells us that hes using TicTacToe mod
-            var table = new Hashtable();
-            table.Add("TicTacToe", true);
-            PhotonNetwork.LocalPlayer.SetCustomProperties(table);
         }
 
         [ModdedGamemodeLeave]
