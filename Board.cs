@@ -93,7 +93,7 @@ namespace TicTacToe
         }
         public void ChangeSpace(byte value, byte x, byte y)
         {
-            if (thing(lastPlayedPlayer.UserId))
+            if (lastPlayedPlayer != null && thing(lastPlayedPlayer.UserId))
             {
                 boardSpaces.First(space => space.x == x && space.y == y).SetColor(Color.magenta);
             }
@@ -183,7 +183,7 @@ namespace TicTacToe
             }
 
             if (placedCount == 9)
-                return (byte)3;
+                return (byte)4;
 
             return (byte)3;
         }

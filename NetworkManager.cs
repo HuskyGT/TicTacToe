@@ -76,7 +76,7 @@ namespace TicTacToe
 
         IEnumerator HandleNewPlayer(Player player)
         {
-            yield return new WaitForSeconds(.1f);
+            yield return new WaitForSeconds(0.3f);
             if (player.CustomProperties.ContainsKey("TicTacToe") && Board.Instance.players[0] == PhotonNetwork.LocalPlayer)
             {
                 Debug.Log(player.NickName + " Has TicTacToe");

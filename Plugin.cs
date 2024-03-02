@@ -51,10 +51,10 @@ namespace TicTacToe
         public void OnJoin(string gamemode)
         {
             InModdedRoom = true;
+            Board.Instance.gameObject.SetActive(true);
             var table = new ExitGames.Client.Photon.Hashtable();
             table.Add("TicTacToe", true);
             PhotonNetwork.LocalPlayer.SetCustomProperties(table);
-            Board.Instance.gameObject.SetActive(true);
         }
 
         [ModdedGamemodeLeave]
