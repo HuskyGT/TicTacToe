@@ -4,6 +4,6 @@
     {
         public const string GUID = "Husky.TicTacToe";
         public const string Name = "TicTacToe";
-        public const string Version = "1.0.0";
+        public const string Version = "1.0.2";
     }
 }
