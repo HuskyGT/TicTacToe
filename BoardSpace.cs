@@ -33,9 +33,6 @@ namespace TicTacToe
             if (!PhotonNetwork.InRoom)
                 return;
 
-            /*if (!PlayersHaveMod())
-                return;*/
-
             if (!Board.canPlay || !canPlace)
                 return;
 

@@ -74,13 +74,6 @@ namespace TicTacToe
             Debug.Log($"Sent Event for space {x}, {y}");
         }
 
-        public override void OnJoinedRoom()
-        {
-            base.OnJoinedRoom();
-            var table = new ExitGames.Client.Photon.Hashtable();
-            table.Add("TicTacToe", true);
-            PhotonNetwork.LocalPlayer.SetCustomProperties(table);
-        }
         IEnumerator HandleNewPlayer(Player player)
         {
             yield return new WaitForSeconds(.1f);
